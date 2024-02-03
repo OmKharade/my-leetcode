@@ -9,3 +9,5 @@ class Solution:
             res.append([nums[i],nums[i+1],nums[i+2]])
 
         return res
+    
+    n = 9
