@@ -37,7 +37,8 @@ for num in seq:
 
 #### February 3 : 1043. Partition Array for Maximum Sum
 
-Dynamic Programming : Front Partition<br>Recursion<br>
+#### Dynamic Programming : Front Partition
+<br>Recursion<br>
 
 1. Define `f(ind)` where `ind` is index of `arr`
 2. Base Case
@@ -74,3 +75,42 @@ return dp[ind]
 ```
 
 Finally call `f(0)` for result
+
+#### February 3 : 76. Minimum Window Substring
+#### Sliding Window
+1. Count characters of `t`
+```py
+for ch in t:
+    countT[ch] = 1 + countT.get(ch,0)
+```
+2. `l` and `r` pointers
+```py
+l = 0
+for r in range(len(s)):
+```
+3. Shift `r` and count characters in window
+```py
+for r in range(len(s)):
+    ch = s[r]
+    countWindow[ch] = 1 + countWindow.get(ch,0)
+```
+4. Find a match
+```py
+if ch in countT and countWindow[ch] == countT[ch]:
+    match += 1
+```
+5. Shift `l` to minimize window when we find substring
+```py
+while match == lenT:
+    # update result
+    if (r - l + 1) < resLen:
+        res = [l,r]
+        resLen = r - l + 1
+    # shrink window
+    countWindow[s[l]] -= 1
+    if s[l] in countT and countWindow[s[l]] < countT[s[l]]:
+        match -= 1
+    l += 1
+```
+
+Finally return `s[l : r + 1]`
