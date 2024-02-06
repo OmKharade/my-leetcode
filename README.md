@@ -114,3 +114,19 @@ while match == lenT:
 ```
 
 Finally return `s[l : r + 1]`
+
+#### February 3 : 387. First Unique Character in a String
+
+1. Count character occurence of `s`
+```py
+count = {}
+for ch in s:
+    count[ch] = 1 + count.get(ch,0)
+```
+2. Return `i` of first character unique character (`count[s[i]]==1`)
+```py
+for i in range(len(s)):
+    if count[s[i]] == 1:
+        return i
+``` 
+3. Return `-1` if no unique characters
