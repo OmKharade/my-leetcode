@@ -76,7 +76,7 @@ return dp[ind]
 
 Finally call `f(0)` for result
 
-#### February 3 : 76. Minimum Window Substring
+#### February 4 : 76. Minimum Window Substring
 #### Sliding Window
 1. Count characters of `t`
 ```py
@@ -115,7 +115,7 @@ while match == lenT:
 
 Finally return `s[l : r + 1]`
 
-#### February 3 : 387. First Unique Character in a String
+#### February 5 : 387. First Unique Character in a String
 
 1. Count character occurence of `s`
 ```py
@@ -130,3 +130,14 @@ for i in range(len(s)):
         return i
 ``` 
 3. Return `-1` if no unique characters
+
+#### February 6 : 49. Group Anagrams
+
+1. To find anagrams, compare the sorted string
+2. To group them, use default dictionary with `tuple(str)` as key and `list` of `s` as value
+```py
+res = defaultdict(list)
+for s in strs:
+    res[tuple(sorted(s))].append(s) 
+```
+3. Return `res.values()`
