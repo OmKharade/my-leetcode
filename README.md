@@ -141,3 +141,23 @@ for s in strs:
     res[tuple(sorted(s))].append(s) 
 ```
 3. Return `res.values()`
+
+#### February 7 : 451. Sort Characters By Frequency
+
+1. Count freqency of characters
+```py
+count = {}
+for ch in s:
+    count[ch] = 1 + count.get(ch,0)
+```
+2. Sort the dictionary by value in decreasing order
+```py
+count = sorted(count.items(), key=lambda x:x[1], reverse = True)
+```
+3. Iterate through the dictionary and create `res` by appending `ch`, `mul` times, where `mul` is the frequency
+```py
+res = ""
+for ch,mul in count:
+    res = res + ch*mul
+```
+
