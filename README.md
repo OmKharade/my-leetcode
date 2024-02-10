@@ -1,8 +1,8 @@
 # my-leetcode
 
-### Daily Coding Challenge February 2024
+## Daily Coding Challenge February 2024
 
-#### February 1 : 2966. Divide Array Into Arrays With Max Difference
+### February 1 : 2966. Divide Array Into Arrays With Max Difference
 
 1. Sort `nums`
 2. Compare two elements to check if they satifsy max difference `k`.<br>Append to `res`.
@@ -16,7 +16,7 @@ for i in range(0,n,3):
 
 3. TC : O(nlogn) - because sorting <br>SC : O(n) - `res` 
 
-#### February 2 : 1291. Sequential Digits 
+### February 2 : 1291. Sequential Digits 
 
 1. Generate all the sequential digits within the given constraints
 ```python
@@ -35,7 +35,7 @@ for num in seq:
 ```
 4. TC : O(36) - maximum number of sequential digits in this case is 36<br>SC : O(36) - `seq`
 
-#### February 3 : 1043. Partition Array for Maximum Sum
+### February 3 : 1043. Partition Array for Maximum Sum
 
 #### Dynamic Programming : Front Partition
 <br>Recursion<br>
@@ -76,7 +76,7 @@ return dp[ind]
 
 Finally call `f(0)` for result
 
-#### February 4 : 76. Minimum Window Substring
+### February 4 : 76. Minimum Window Substring
 #### Sliding Window
 1. Count characters of `t`
 ```py
@@ -115,7 +115,7 @@ while match == lenT:
 
 Finally return `s[l : r + 1]`
 
-#### February 5 : 387. First Unique Character in a String
+### February 5 : 387. First Unique Character in a String
 
 1. Count character occurence of `s`
 ```py
@@ -131,7 +131,7 @@ for i in range(len(s)):
 ``` 
 3. Return `-1` if no unique characters
 
-#### February 6 : 49. Group Anagrams
+### February 6 : 49. Group Anagrams
 
 1. To find anagrams, compare the sorted string
 2. To group them, use default dictionary with `tuple(str)` as key and `list` of `s` as value
@@ -142,7 +142,7 @@ for s in strs:
 ```
 3. Return `res.values()`
 
-#### February 7 : 451. Sort Characters By Frequency
+### February 7 : 451. Sort Characters By Frequency
 
 1. Count freqency of characters
 ```py
@@ -160,4 +160,40 @@ res = ""
 for ch,mul in count:
     res = res + ch*mul
 ```
+
+### February 8 : 279. Perfect Squares
+
+1. Initialize the `dp` array
+```py
+dp = [-1 for _ in range(n+1)]
+```
+2. Recursive function `f(n)`
+3. Base Case : 
+
+```python
+if n==0:                                                    
+    return 0  
+```
+- `n == 0` , no squares are needed to sum up to zero.
+
+4. Memoization check
+```py
+if dp[n] != -1:
+    return dp[n]
+```
+5. Main logic
+```py
+mini = n                                                     
+i = 1
+while i*i<=n:                                               
+    mini = min(mini, f(n-(i*i)))
+    i+=1
+dp[n] =  mini+1                                              
+return dp[n]
+```
+- `mini` is initialized to `n`, assuming the worst case where the sum consists of `n` 1's (1<sup>2</sup> + 1<sup>2</sup> + ... + 1<sup>2</sup>)
+- loop through all square numbers less than `n`
+- add `1` to account for the square number used in this step
+
+Finally, call and return `f(n)`
 
