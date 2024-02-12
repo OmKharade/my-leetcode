@@ -197,3 +197,35 @@ return dp[n]
 
 Finally, call and return `f(n)`
 
+### February 9 : 368. Largest Divisible Subset
+
+1. Sort `nums` 
+2. Initialize the `dp` dictionary
+3. Recursive function `f(n)`
+4. Base Case : 
+
+```python
+if ind<0:
+    return []
+```
+- `n < 0` , out of bounds case
+
+5. Memoization check
+```py
+if (ind,prev) in dp:
+    return dp[(ind,prev)]
+```
+6. Main logic
+```py
+res = f(ind-1,prev)
+if prev == 1 or prev % nums[ind] == 0:
+    pick = [nums[ind]] + f(ind-1,nums[ind])
+    if len(pick) > len(res):
+        res = pick
+
+dp[(ind,prev)] = res
+return res
+```
+
+Finally, call and return `f(len(nums)-1,1)`
+
